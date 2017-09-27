@@ -1,14 +1,19 @@
-package ua.watersmith.githubrepoviewer;
+package ua.watersmith.githubrepoviewer.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+import ua.watersmith.githubrepoviewer.R;
+import ua.watersmith.githubrepoviewer.RepoFragment;
+import ua.watersmith.githubrepoviewer.entities.Repo;
+import ua.watersmith.githubrepoviewer.presentation.MainPresenter;
+import ua.watersmith.githubrepoviewer.presentation.MainView;
+
+public class MainActivity extends MvpAppCompatActivity implements MainView, ReposFragment.OnListFragmentInteractionListener {
     @InjectPresenter
     MainPresenter mMainPresenter;
 
@@ -32,8 +37,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     }
 
     @Override
-    public void showRepoInfo() {
-
+    public void showRepoInfo(RepoFragment repoFragment) {
+        showFragment(repoFragment,"Repo");
     }
 
     @Override
@@ -44,5 +49,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     @Override
     public void showContributors() {
 
+    }
+
+    @Override
+    public void onListFragmentInteraction(Repo item) {
+        mMainPresenter.onRepoSelected(item);
     }
 }

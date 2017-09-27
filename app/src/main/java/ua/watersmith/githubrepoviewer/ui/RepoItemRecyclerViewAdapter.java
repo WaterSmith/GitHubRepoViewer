@@ -1,4 +1,4 @@
-package ua.watersmith.githubrepoviewer;
+package ua.watersmith.githubrepoviewer.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,18 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import ua.watersmith.githubrepoviewer.ReposFragment.OnListFragmentInteractionListener;
-import ua.watersmith.githubrepoviewer.entities.Repo;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import ua.watersmith.githubrepoviewer.R;
+import ua.watersmith.githubrepoviewer.entities.Repo;
 
 public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRecyclerViewAdapter.ViewHolder> {
 
     private List<Repo> mValues;
-    private OnListFragmentInteractionListener mListener;
+    private OnItemClickListener mListener;
 
-    public void setOnListFragmentInteractionListener(OnListFragmentInteractionListener listener){
+    public void setOnListFragmentInteractionListener(OnItemClickListener listener){
         mListener = listener;
     }
 
@@ -37,9 +36,7 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mRepoHeader.setText(mValues.get(position).getName());
-        //x
         holder.mRepoStars.setText("Stars:"+mValues.get(position).getStargazersCount());
-        //
         holder.mRepoForks.setText("Forks:"+mValues.get(position).getForksCount());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +45,7 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onClickItem(holder.mItem);
                 }
             }
         });
@@ -81,5 +78,10 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
         public String toString() {
             return super.toString() + " '" + mRepoHeader.getText() + "'";
         }
+    }
+
+    public interface OnItemClickListener {
+        // TODO: Update argument type and name
+        void onClickItem(Repo item);
     }
 }

@@ -1,27 +1,17 @@
-package ua.watersmith.githubrepoviewer;
+package ua.watersmith.githubrepoviewer.presentation;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import ua.watersmith.githubrepoviewer.RepoFragment;
 import ua.watersmith.githubrepoviewer.entities.Repo;
-import ua.watersmith.githubrepoviewer.retrofit.GitHubApiModule;
+import ua.watersmith.githubrepoviewer.ui.ReposFragment;
 
 /**
  * Created by WaterSmith on 26.09.2017.
  */
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
-    private Object onNext;
-
     @Override
     protected void onFirstViewAttach() {
         ReposFragment reposFragment = new ReposFragment();
@@ -30,4 +20,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
 
+    public void onRepoSelected(Repo item) {
+        RepoFragment repoFragment = new RepoFragment();
+        getViewState().showRepoInfo(repoFragment);
+        int i = 1;
+    }
 }
