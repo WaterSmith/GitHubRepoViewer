@@ -3,36 +3,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-                  tools:context="ua.watersmith.githubrepoviewer.RepoFragment">
+                  tools:context="ua.watersmith.githubrepoviewer.ui.RepoFragment">
 
         <TextView
             android:id="@+id/repo_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:text="Repo#1"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/repo_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:text="Description"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_commits"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/gradient_background"
-            android:text="Button"/>
+            android:text="Commits" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_contributors"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/gradient_background"
-            android:text="Button"/>
+            android:text="Contributors" />
     </LinearLayout>

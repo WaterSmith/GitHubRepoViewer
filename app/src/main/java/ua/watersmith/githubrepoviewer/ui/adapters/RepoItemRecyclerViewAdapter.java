@@ -1,4 +1,4 @@
-package ua.watersmith.githubrepoviewer.ui;
+package ua.watersmith.githubrepoviewer.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -81,7 +81,6 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
     }
 
     public interface OnItemClickListener {
-        // TODO: Update argument type and name
         void onClickItem(Repo item);
     }
 }

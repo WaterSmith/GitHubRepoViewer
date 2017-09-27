@@ -3,7 +3,10 @@ package ua.watersmith.githubrepoviewer.presentation;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
-import ua.watersmith.githubrepoviewer.RepoFragment;
+import ua.watersmith.githubrepoviewer.entities.Commit;
+import ua.watersmith.githubrepoviewer.ui.CommitsFragment;
+import ua.watersmith.githubrepoviewer.ui.ContributorsFragment;
+import ua.watersmith.githubrepoviewer.ui.RepoFragment;
 import ua.watersmith.githubrepoviewer.entities.Repo;
 import ua.watersmith.githubrepoviewer.ui.ReposFragment;
 
@@ -14,15 +17,24 @@ import ua.watersmith.githubrepoviewer.ui.ReposFragment;
 public class MainPresenter extends MvpPresenter<MainView> {
     @Override
     protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
         ReposFragment reposFragment = new ReposFragment();
         getViewState().showRepos(reposFragment);
-        super.onFirstViewAttach();
-    }
+     }
 
 
     public void onRepoSelected(Repo item) {
-        RepoFragment repoFragment = new RepoFragment();
+        RepoFragment repoFragment = RepoFragment.newInstance(item);
         getViewState().showRepoInfo(repoFragment);
-        int i = 1;
+    }
+
+    public void onCommitsClick(String repoName){
+        CommitsFragment commitsFragment = CommitsFragment.newInstance(repoName);
+        getViewState().showCommits(commitsFragment, repoName);
+    }
+
+    public void onContributorsClick(String repoName){
+        ContributorsFragment contributorsFragment = ContributorsFragment.newInstance(repoName);
+        getViewState().showContributors(contributorsFragment);
     }
 }

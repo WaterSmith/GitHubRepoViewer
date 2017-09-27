@@ -4,7 +4,9 @@ import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
-import ua.watersmith.githubrepoviewer.RepoFragment;
+import ua.watersmith.githubrepoviewer.ui.CommitsFragment;
+import ua.watersmith.githubrepoviewer.ui.ContributorsFragment;
+import ua.watersmith.githubrepoviewer.ui.RepoFragment;
 import ua.watersmith.githubrepoviewer.ui.ReposFragment;
 
 /**
@@ -14,6 +16,6 @@ import ua.watersmith.githubrepoviewer.ui.ReposFragment;
 public interface MainView extends MvpView {
     void showRepos(ReposFragment reposFragment);
     void showRepoInfo(RepoFragment repoFragment);
-    void showCommits();
-    void showContributors();
+    void showCommits(CommitsFragment commitsFragment, String repoName);
+    void showContributors(ContributorsFragment contributorsFragment);
 }

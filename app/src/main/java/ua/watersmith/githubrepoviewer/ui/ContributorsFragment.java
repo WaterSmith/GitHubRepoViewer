@@ -11,25 +11,40 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import java.util.List;
 
 import ua.watersmith.githubrepoviewer.R;
+import ua.watersmith.githubrepoviewer.entities.Contributor;
 import ua.watersmith.githubrepoviewer.entities.Repo;
-import ua.watersmith.githubrepoviewer.presentation.ReposPresenter;
-import ua.watersmith.githubrepoviewer.presentation.ReposView;
-import ua.watersmith.githubrepoviewer.ui.adapters.RepoItemRecyclerViewAdapter;
+import ua.watersmith.githubrepoviewer.presentation.ContributorsPresenter;
+import ua.watersmith.githubrepoviewer.presentation.ContributorsView;
+import ua.watersmith.githubrepoviewer.ui.adapters.ContributorItemRecyclerViewAdapter;
 
 
-public class ReposFragment extends MvpAppCompatFragment implements ReposView, RepoItemRecyclerViewAdapter.OnItemClickListener {
+public class ContributorsFragment extends MvpAppCompatFragment implements ContributorsView {
     @InjectPresenter
-    ReposPresenter mReposPresenter;
+    ContributorsPresenter mCommitsPresenter;
 
-    private RepoItemRecyclerViewAdapter mRepoItemRecyclerViewAdapter;
+    private ContributorItemRecyclerViewAdapter mContributorItemRecyclerViewAdapter;
 
-    public ReposFragment() {
+    public ContributorsFragment() {
     }
 
+    public static ContributorsFragment newInstance(String repoName) {
+        ContributorsFragment fragment = new ContributorsFragment();
+        Bundle args = new Bundle();
+        args.putString("repoName",repoName);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @ProvidePresenter
+    ContributorsPresenter provideContributorsPresenter() {
+        String repoName = getArguments().getString("repoName");
+        return new ContributorsPresenter(repoName);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,23 +54,22 @@ public class ReposFragment extends MvpAppCompatFragment implements ReposView, Re
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_repoitem_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_commititem_list, container, false);
 
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        mRepoItemRecyclerViewAdapter = new RepoItemRecyclerViewAdapter();
-        mRepoItemRecyclerViewAdapter.setOnListFragmentInteractionListener(this);
+        mContributorItemRecyclerViewAdapter = new ContributorItemRecyclerViewAdapter();
 
-        recyclerView.setAdapter(mRepoItemRecyclerViewAdapter);
+        recyclerView.setAdapter(mContributorItemRecyclerViewAdapter);
 
         return view;
     }
 
     @Override
-    public void setReposData(List<Repo> items) {
-        mRepoItemRecyclerViewAdapter.setRepoData(items);
+    public void setContributorsData(List<Contributor> items) {
+        mContributorItemRecyclerViewAdapter.setRepoData(items);
     }
 
     @Override
@@ -70,17 +84,6 @@ public class ReposFragment extends MvpAppCompatFragment implements ReposView, Re
             } else {
                 progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-    @Override
-    public void onClickItem(Repo item) {
-        View view = getView();
-        if (view!=null) {
-            Context context = view.getContext();
-            if (context instanceof OnListFragmentInteractionListener) {
-                ((OnListFragmentInteractionListener) context).onListFragmentInteraction(item);
             }
         }
     }
