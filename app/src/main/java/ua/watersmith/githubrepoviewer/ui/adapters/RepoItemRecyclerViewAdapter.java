@@ -39,14 +39,9 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
         holder.mRepoStars.setText("Stars:"+mValues.get(position).getStargazersCount());
         holder.mRepoForks.setText("Forks:"+mValues.get(position).getForksCount());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onClickItem(holder.mItem);
-                }
+        holder.mView.setOnClickListener(v -> {
+            if (null != mListener) {
+                mListener.onClickItem(holder.mItem);
             }
         });
     }
@@ -60,11 +55,11 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public  View mView;
-        public  TextView mRepoHeader;
-        public  TextView mRepoStars;
-        public  TextView mRepoForks;
-        public Repo mItem;
+        public View     mView;
+        public TextView mRepoHeader;
+        public TextView mRepoStars;
+        public TextView mRepoForks;
+        public Repo     mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -72,11 +67,6 @@ public class RepoItemRecyclerViewAdapter extends RecyclerView.Adapter<RepoItemRe
             mRepoHeader = (TextView) view.findViewById(R.id.repo_header);
             mRepoStars = (TextView) view.findViewById(R.id.repo_stars);
             mRepoForks = (TextView) view.findViewById(R.id.repo_forks);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mRepoHeader.getText() + "'";
         }
     }
 

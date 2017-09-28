@@ -1,5 +1,6 @@
 package ua.watersmith.githubrepoviewer.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +22,9 @@ import ua.watersmith.githubrepoviewer.presentation.ReposView;
 import ua.watersmith.githubrepoviewer.ui.adapters.RepoItemRecyclerViewAdapter;
 
 
-public class ReposFragment extends MvpAppCompatFragment implements ReposView, RepoItemRecyclerViewAdapter.OnItemClickListener {
+public class ReposFragment extends MvpAppCompatFragment
+        implements ReposView, RepoItemRecyclerViewAdapter.OnItemClickListener {
+
     @InjectPresenter
     ReposPresenter mReposPresenter;
 
@@ -76,12 +79,9 @@ public class ReposFragment extends MvpAppCompatFragment implements ReposView, Re
 
     @Override
     public void onClickItem(Repo item) {
-        View view = getView();
-        if (view!=null) {
-            Context context = view.getContext();
-            if (context instanceof OnListFragmentInteractionListener) {
-                ((OnListFragmentInteractionListener) context).onListFragmentInteraction(item);
-            }
+        Activity activity = getActivity();
+        if (activity instanceof OnListFragmentInteractionListener) {
+            ((OnListFragmentInteractionListener) activity).onListFragmentInteraction(item);
         }
     }
 

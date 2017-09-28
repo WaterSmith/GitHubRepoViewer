@@ -52,9 +52,9 @@ public class RepoFragment extends Fragment {
         Button btnContributors = (Button) view.findViewById(R.id.btn_contributors);
         btnCommits.setOnClickListener(v -> {
             FragmentActivity activity = getActivity();
-                if (activity instanceof OnRepoFragmentInteractionListener){
-                    ((OnRepoFragmentInteractionListener) activity).onCommitsClick(mRepo.getName());
-                }
+            if (activity instanceof OnRepoFragmentInteractionListener){
+                ((OnRepoFragmentInteractionListener) activity).onCommitsClick(mRepo.getName());
+            }
         });
 
         btnContributors.setOnClickListener(v -> {

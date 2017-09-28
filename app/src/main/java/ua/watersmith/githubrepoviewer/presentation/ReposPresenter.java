@@ -24,7 +24,7 @@ public class ReposPresenter extends MvpPresenter<ReposView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         Observable<Repo[]> repoObservable = GitHubApiModule.getService().getRepos("square");
-        repoObservable.map(repo -> Arrays.asList(repo)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(this::onNext,this::onError,this::onComplete);
+        repoObservable.map(Arrays::asList).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(this::onNext,this::onError,this::onComplete);
         getViewState().showProgress(true);
     }
 

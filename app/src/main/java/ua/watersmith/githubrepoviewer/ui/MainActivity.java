@@ -8,13 +8,14 @@ import android.support.v4.app.FragmentTransaction;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
-import butterknife.ButterKnife;
 import ua.watersmith.githubrepoviewer.R;
 import ua.watersmith.githubrepoviewer.entities.Repo;
 import ua.watersmith.githubrepoviewer.presentation.MainPresenter;
 import ua.watersmith.githubrepoviewer.presentation.MainView;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView, ReposFragment.OnListFragmentInteractionListener, RepoFragment.OnRepoFragmentInteractionListener {
+public class MainActivity extends MvpAppCompatActivity
+        implements MainView, ReposFragment.OnListFragmentInteractionListener, RepoFragment.OnRepoFragmentInteractionListener {
+
     @InjectPresenter
     MainPresenter mMainPresenter;
 
@@ -33,7 +34,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Repo
         super.onBackPressed();
     }
 
-    public void showFragment(Fragment fragment, String tag){
+    private void showFragment(Fragment fragment, String tag){
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.mainFragment, fragment);
@@ -43,19 +44,16 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Repo
 
     @Override
     public void showRepos(ReposFragment reposFragment) {
-        //setTitle("Square repo's");
         showFragment(reposFragment,"Repos");
     }
 
     @Override
     public void showRepoInfo(RepoFragment repoFragment) {
-        //setTitle("Repo info");
         showFragment(repoFragment,"Repo");
     }
 
     @Override
     public void showCommits(CommitsFragment commitsFragment, String repoName) {
-        //setTitle(repoName);
         showFragment(commitsFragment,"Commits");
     }
 

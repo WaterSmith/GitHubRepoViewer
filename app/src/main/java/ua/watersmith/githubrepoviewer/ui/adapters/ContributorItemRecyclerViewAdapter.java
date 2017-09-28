@@ -34,9 +34,11 @@ public class ContributorItemRecyclerViewAdapter extends RecyclerView.Adapter<Con
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mLogin.setText(holder.mItem.getLogin());
+
         Picasso.with(holder.itemView.getContext())
                 .load(holder.mItem.getAvatarUrl())
                 .into(holder.mAvatar);
+
     }
 
 

@@ -17,7 +17,6 @@ import java.util.List;
 
 import ua.watersmith.githubrepoviewer.R;
 import ua.watersmith.githubrepoviewer.entities.Contributor;
-import ua.watersmith.githubrepoviewer.entities.Repo;
 import ua.watersmith.githubrepoviewer.presentation.ContributorsPresenter;
 import ua.watersmith.githubrepoviewer.presentation.ContributorsView;
 import ua.watersmith.githubrepoviewer.ui.adapters.ContributorItemRecyclerViewAdapter;
@@ -25,7 +24,7 @@ import ua.watersmith.githubrepoviewer.ui.adapters.ContributorItemRecyclerViewAda
 
 public class ContributorsFragment extends MvpAppCompatFragment implements ContributorsView {
     @InjectPresenter
-    ContributorsPresenter mCommitsPresenter;
+    ContributorsPresenter mContributorsPresenter;
 
     private ContributorItemRecyclerViewAdapter mContributorItemRecyclerViewAdapter;
 
@@ -88,7 +87,4 @@ public class ContributorsFragment extends MvpAppCompatFragment implements Contri
         }
     }
 
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Repo item);
-    }
 }

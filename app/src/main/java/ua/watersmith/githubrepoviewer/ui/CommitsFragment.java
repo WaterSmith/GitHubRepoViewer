@@ -15,10 +15,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import java.util.List;
 
-
 import ua.watersmith.githubrepoviewer.R;
 import ua.watersmith.githubrepoviewer.entities.CommitInfo;
-import ua.watersmith.githubrepoviewer.entities.Repo;
 import ua.watersmith.githubrepoviewer.presentation.CommitsPresenter;
 import ua.watersmith.githubrepoviewer.presentation.CommitsView;
 import ua.watersmith.githubrepoviewer.ui.adapters.CommitItemRecyclerViewAdapter;
@@ -89,7 +87,4 @@ public class CommitsFragment extends MvpAppCompatFragment implements CommitsView
         }
     }
 
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Repo item);
-    }
 }

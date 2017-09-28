@@ -3,7 +3,6 @@ package ua.watersmith.githubrepoviewer.presentation;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
-import ua.watersmith.githubrepoviewer.entities.Commit;
 import ua.watersmith.githubrepoviewer.ui.CommitsFragment;
 import ua.watersmith.githubrepoviewer.ui.ContributorsFragment;
 import ua.watersmith.githubrepoviewer.ui.RepoFragment;

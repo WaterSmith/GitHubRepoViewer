@@ -9,9 +9,7 @@ import java.util.List;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import ua.watersmith.githubrepoviewer.entities.Commit;
 import ua.watersmith.githubrepoviewer.entities.CommitInfo;
-import ua.watersmith.githubrepoviewer.entities.Repo;
 import ua.watersmith.githubrepoviewer.retrofit.GitHubApiModule;
 
 /**
@@ -31,7 +29,10 @@ public class CommitsPresenter extends MvpPresenter<CommitsView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         Observable<CommitInfo[]> repoObservable = GitHubApiModule.getService().getCommits("square",mRepoName);
-        repoObservable.map(commits -> Arrays.asList(commits)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(this::onNext,this::onError,this::onComplete);
+        repoObservable.map(Arrays::asList)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onNext,this::onError,this::onComplete);
         getViewState().showProgress(true);
     }
 
